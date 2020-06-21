@@ -2,19 +2,49 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8"/>
-
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <title>申请</title>
-
-    <link rel="stylesheet" href="/SpringBootBase/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/SpringBootBase/css/customer/login.css"/>
 </head>
+
+<script type="text/javascript">
+    function submitForm() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/newnew",
+            data:JSON.stringify(serializeObject()),
+            success: function (res) {
+                window.location.href = res;
+            },
+            error: function (res) {
+                console.log(res)
+            }
+        })
+    }
+
+    function serializeObject() {
+        var o = {};
+        var a = $("#form1").serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    }
+</script>
 
 <body>
 <div class="container">
-    <form class="form-signin" action="./apply" method="post">
+    <form id="form1" class="form-signin" method="post">
         <h2 class="form-signin-heading"> 请假申请</h2>
         <p>
-        <input type="text" class="form-control" placeholder="申请人：" name="username"/>
+        <input type="text" class="form-control" placeholder="申请人：" name="applicant"/>
         </p>
         <p>
             <input type="text" class="form-control" placeholder="事由" name="reason"/>
@@ -22,7 +52,10 @@
         <p>
         <input type="date" class="form-control" placeholder="时间" name="date"/>
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+        <p>
+        <input type="text" class="form-control" placeholder="请假天数" name="days"/>
+        </p>
+        <button onclick="submitForm()" class="btn btn-lg btn-primary btn-block" >提交</button>
     </form>
 </div>
 </body>

@@ -18,6 +18,7 @@ public class LeaveStateMachinePersist implements StateMachinePersist<States,Even
     @Override
     public void write(StateMachineContext<States, Events> stateMachineContext, String s) {
         cache.put(s, stateMachineContext.getState());
+        System.out.println("cache="+cache);
     }
 
     @Override

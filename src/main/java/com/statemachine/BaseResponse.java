@@ -9,4 +9,12 @@ public class BaseResponse {
         this.success = false;
     }
 
+    @Override
+    public String toString() {
+        return "BaseResponse{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
