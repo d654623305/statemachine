@@ -248,7 +248,8 @@ public class StateMachineController {
 注意 leaveId 是业务 id，代表了一个业务对象（比如请假条 LeaveRequest）。leaveId 是一个 UUID，保证不会重复。
 
 运行程序，会自动在 8080 端口上运行 tomcat。然后就可以用 postman 调用各个接口进行测试了：
-
+或者使用测试包com.example.statemachine中的StatemachineApplicationTests类Test方法进行测试
+com.example.statemachine.StatemachineApplicationTests.Test();
 <div markdown="1">
     <video width="99%" height="620" autoplay loop muted markdown="1">
         <source src="statemachine.mp4" type="video/mp4" markdown="1" >
